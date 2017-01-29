@@ -46,4 +46,14 @@ describe('When messenger sends messages', function () {
             assert.equal('Yes, oh omnipresent authority figure?', I.lastMessage);
         });
     });
+    describe('Today is friends birthday', function () {
+        it('I receive a message', function () {
+            let jaheira = new User('jaheira', [], true);
+            let I = new User('me', [jaheira]);
+
+            let messenger = new Messenger(I);
+
+            assert.equal('You should send some flowers to jaheira!', I.lastMessage);
+        });
+    });
 });

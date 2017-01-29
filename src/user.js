@@ -1,7 +1,8 @@
 class User {
-    constructor(name, contacts) {
+    constructor(name, contacts, todayIsBirthday) {
         this._name = name;
         this._contacts = contacts || [];
+        this._isBirthday = todayIsBirthday || false;
         this._message = false;
     }
     get name(){
@@ -15,6 +16,9 @@ class User {
     }
     get contacts() {
         return this._contacts;
+    }
+    get isBirthday() {
+        return this._isBirthday;
     }
 }
 
