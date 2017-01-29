@@ -35,4 +35,15 @@ describe('When messenger sends messages', function () {
             assert.equal('hello chat', jaheira.lastMessage);
         });
     });
+    describe('Friend sends me a message', function () {
+        it('I receive a message', function () {
+            let I = new User('me');
+            let jaheira = new User('jaheira', [I]);
+            let messenger = new Messenger(jaheira);
+
+            messenger.send(I, 'Yes, oh omnipresent authority figure?');
+
+            assert.equal('Yes, oh omnipresent authority figure?', I.lastMessage);
+        });
+    });
 });
