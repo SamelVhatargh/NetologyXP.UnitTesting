@@ -62,7 +62,7 @@ describe('When messenger sends messages', function () {
         });
     });
     describe('Today is friends birthday', function () {
-        it('I receive a message', function () {
+        it('I receive a reminder', function () {
             let jaheira = new User('jaheira', [], true);
             let I = new User('me', [jaheira]);
 
