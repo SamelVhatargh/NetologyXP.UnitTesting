@@ -34,7 +34,20 @@ describe('When messenger sends messages', function () {
             assert.equal(false, sarevok.lastMessage);
         });
     });
+    describe('I edit a message', function () {
+        it('Friend see changed message', function () {
+            let khalid = new User('Khalid');
+            let jaheira = new User('Jaheira');
+            let friends = [khalid, jaheira];
+            let I = new User('me', friends);
+            let messenger = new Messenger(I);
+            messenger.send(khalid, 'helo');
 
+            messenger.editLastMessage('hello');
+
+            assert.equal('hello', khalid.lastMessage);
+        });
+    });
     describe('I send a message to chat', function () {
         it('Every chat member receives my message', function () {
             let khalid = new User('Khalid');
