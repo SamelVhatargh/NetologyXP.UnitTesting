@@ -8,7 +8,9 @@ class Messenger {
         }
     }
     send(receiver, message) {
-        receiver.lastMessage = message;
+        if (receiver.canReceiveMessagesFrom(this._user)) {
+            receiver.lastMessage = message;
+        }
     }
 }
 

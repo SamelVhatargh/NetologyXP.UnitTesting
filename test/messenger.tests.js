@@ -20,6 +20,21 @@ describe('When messenger sends messages', function () {
             assert.equal('hello', khalid.lastMessage);
         });
     });
+    describe('I send a message to person who is not in my friends list', function () {
+        it('This person does not receive my message', function () {
+            let khalid = new User('Khalid');
+            let jaheira = new User('Jaheira');
+            let sarevok = new User('Sarevok');
+            let friends = [khalid, jaheira];
+            let I = new User('me', friends);
+            let messenger = new Messenger(I);
+
+            messenger.send(sarevok, 'hello');
+
+            assert.equal(false, sarevok.lastMessage);
+        });
+    });
+
     describe('I send a message to chat', function () {
         it('Every chat member receives my message', function () {
             let khalid = new User('Khalid');

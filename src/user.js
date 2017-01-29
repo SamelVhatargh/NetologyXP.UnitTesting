@@ -20,6 +20,14 @@ class User {
     get isBirthday() {
         return this._isBirthday;
     }
+    canReceiveMessagesFrom(user) {
+        for (var i = 0; i < user.contacts.length; i++) {
+            if (user.contacts[i] === this) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 module.exports = User;

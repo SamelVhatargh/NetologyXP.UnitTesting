@@ -8,6 +8,9 @@ class Chat {
             this._contacts[i].lastMessage = message;
         }
     }
+    canReceiveMessagesFrom(user) {
+        return true;
+    }
 }
 
 module.exports = Chat;
