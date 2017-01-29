@@ -1,6 +1,7 @@
 class User {
-    constructor(name) {
+    constructor(name, contacts) {
         this._name = name;
+        this._contacts = contacts || [];
         this._message = false;
     }
     get name(){
@@ -12,7 +13,9 @@ class User {
     get lastMessage() {
         return this._message;
     }
-
+    get contacts() {
+        return this._contacts;
+    }
 }
 
 module.exports = User;

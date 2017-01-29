@@ -6,12 +6,13 @@ var User = require('../src/user');
 
 
 describe('When messenger sends messages', function () {
-    describe('I send message to a friend', function () {
+    describe('I send a message to friend', function () {
         it('Friend receives my message', function () {
-            let I = new User('me');
             let khalid = new User('Khalid');
             let jaheira = new User('Jaheira');
-            let messenger = new Messenger(I, [khalid, jaheira]);
+            let friends = [khalid, jaheira];
+            let I = new User('me', friends);
+            let messenger = new Messenger(I);
 
             messenger.send('Khalid', 'hello');
 

@@ -1,7 +1,6 @@
 class Messenger {
-    constructor(currentUser, friends) {
+    constructor(currentUser) {
         this._user = currentUser;
-        this._friends = friends;
     }
     send(userName, message) {
         let user = this._getUserFromFriends(userName);
@@ -9,9 +8,9 @@ class Messenger {
     }
 
     _getUserFromFriends(name) {
-        for (let i = 0; i < this._friends.length; i++) {
-            if (this._friends[i].name === name) {
-                return this._friends[i];
+        for (let i = 0; i < this._user.contacts.length; i++) {
+            if (this._user.contacts[i].name === name) {
+                return this._user.contacts[i];
             }
         }
     }
