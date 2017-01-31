@@ -5,8 +5,8 @@ class Client {
         this._pizzas = [];
         this._birthdate = birthdate;
     }
-    order(pizzas) {
-        return new Order(pizzas);
+    order(pizzas, promocode) {
+        return new Order(pizzas, promocode);
     }
     get pizzas() {
         return this._pizzas;
