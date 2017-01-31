@@ -62,15 +62,26 @@ describe('Pizzeria should', function () {
         });
     });
     describe('give me 20% discount', function(){
-        it('if I order 2 pizzas between 10 and 16 hours', function() {
-            let pizzas = [new Pizza('peperoni'), new Pizza('peperoni')];
-            (new SystemDate()).set(new Date(2016, 3, 3, 11));
+        let testCases = [
+            {pizzaCount: 2},
+            {pizzaCount: 3},
+            {pizzaCount: 4},
+        ];
+        testCases.forEach(function (testCase) {
+            it('if I order ' + testCase.pizzaCount + ' pizzas between 10 and 16 hours', function() {
+                let pizzas = [];
+                for (let i = 1; i <= testCase.pizzaCount; i++) {
+                    pizzas.push(new Pizza('peperoni'));
+                }
+                (new SystemDate()).set(new Date(2016, 3, 3, 11));
 
-            let order = me.order(pizzas);
-            pizzeria.serve(order, me);
+                let order = me.order(pizzas);
+                pizzeria.serve(order, me);
 
-            assert.equal((500 + 500) * (1 - 0.20), order.price);
+                assert.equal((500 * testCase.pizzaCount) * (1 - 0.20), order.price);
+            });
         });
+
     });
     describe('give me 5% in bonus', function(){
         it('if I order pizza', function() {
