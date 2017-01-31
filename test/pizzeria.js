@@ -57,4 +57,15 @@ describe('Pizzeria should', function () {
             assert.equal(400, order.price);
         });
     });
+    describe('give me 20% discount', function(){
+        it('if I order 2 pizzas between 10 and 16 hours', function() {
+            let pizzas = [new Pizza('peperoni'), new Pizza('peperoni')];
+            (new SystemDate()).set(new Date(2016, 3, 3, 11));
+
+            let order = me.order(pizzas);
+            pizzeria.serve(order, me);
+
+            assert.equal((500 + 500) * (1 - 0.20), order.price);
+        });
+    });
 });

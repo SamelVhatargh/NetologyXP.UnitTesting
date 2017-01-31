@@ -1,4 +1,5 @@
 var Pizza = require('./pizza');
+var SystemDate = require('./systemdate');
 
 class Pizzeria {
     constructor(prices) {
@@ -10,6 +11,11 @@ class Pizzeria {
         let sum = 0;
         for (let i = 0; i < servedPizzas.length; i++) {
             sum += this._prices[servedPizzas[i].name];
+        }
+
+        if (servedPizzas.length >= 2
+            && SystemDate.now().getHours() >= 10 && SystemDate.now().getHours() <= 16) {
+            sum = sum * 0.80;
         }
 
         if (order.promocode === 'ABCD') {
