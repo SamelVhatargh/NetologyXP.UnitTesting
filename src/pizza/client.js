@@ -3,6 +3,7 @@ var Order = require('./order');
 class Client {
     constructor(birthdate) {
         this._pizzas = [];
+        this._bonus = 0;
         this._birthdate = birthdate;
     }
     order(pizzas, promocode) {
@@ -16,6 +17,12 @@ class Client {
     }
     get birthday() {
         return this._birthdate;
+    }
+    get bonus() {
+        return this._bonus;
+    }
+    set bonus(bonus) {
+        this._bonus = bonus;
     }
 }
 

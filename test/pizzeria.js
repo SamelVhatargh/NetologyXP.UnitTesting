@@ -21,12 +21,18 @@ class PizzeriaTestsFactory {
 
 describe('Pizzeria should', function () {
     let factory =  new PizzeriaTestsFactory();
-    let me = factory.createClient();
-    let pizzeria = factory.createPizzeria();
+    let me;
+    let pizzas;
+    let pizzeria;
+
+    beforeEach(function () {
+        me = factory.createClient();
+        pizzas = factory.createPizzasForOrder();
+        pizzeria = factory.createPizzeria();
+    });
 
     describe('give me pizza', function(){
         it('if I order pizza', function() {
-            let pizzas = factory.createPizzasForOrder();
 
             let order = me.order(pizzas);
             pizzeria.serve(order, me);
@@ -39,7 +45,6 @@ describe('Pizzeria should', function () {
     describe('give me special pizza', function(){
         it('if I order pizza at birthday', function() {
             (new SystemDate()).set(new Date(2016, 3, 3));
-            let pizzas = factory.createPizzasForOrder();
 
             let order = me.order(pizzas);
             pizzeria.serve(order, me);
@@ -49,7 +54,6 @@ describe('Pizzeria should', function () {
     });
     describe('give me 100$ discount', function(){
         it('if I order pizza with ABCD promocode', function() {
-            let pizzas = factory.createPizzasForOrder();
 
             let order = me.order(pizzas, 'ABCD');
             pizzeria.serve(order, me);
@@ -66,6 +70,15 @@ describe('Pizzeria should', function () {
             pizzeria.serve(order, me);
 
             assert.equal((500 + 500) * (1 - 0.20), order.price);
+        });
+    });
+    describe('give me 5% in bonus', function(){
+        it('if I order pizza', function() {
+
+            let order = me.order(pizzas);
+            pizzeria.serve(order, me);
+
+            assert.equal(500 * 0.05, me.bonus);
         });
     });
 });

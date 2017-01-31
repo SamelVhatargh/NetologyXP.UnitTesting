@@ -29,6 +29,7 @@ class Pizzeria {
             servedPizzas.push(new Pizza('special'));
         }
 
+        client.bonus = client.bonus + sum * 0.05;
         client.pizzas = servedPizzas;
     }
 }
